@@ -1,0 +1,8 @@
+.app {
+    width: 60vw;
+    max-width: 900px;
+    min-width: 400px;
+    position: relative;
+    top: 10vh;
+    margin: 0 auto;
+}

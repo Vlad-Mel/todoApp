@@ -1,0 +1,9 @@
+.search-panel {
+    padding: 20px 0;
+    justify-content: space-between;
+}
+
+.search-panel input {
+    width: 95%;
+    margin-right: 0.5em;
+}

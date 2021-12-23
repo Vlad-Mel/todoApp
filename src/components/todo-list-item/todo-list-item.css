@@ -1,0 +1,16 @@
+.todo-list-item {
+    justify-content: space-between;
+}
+
+.todo-list-item span button {
+    margin-left: 5px;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.important {
+    font-weight: 800;
+    color: steelblue
+}
