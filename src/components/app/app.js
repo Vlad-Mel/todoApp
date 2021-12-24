@@ -5,16 +5,18 @@ import SearchPanel from "../search-panel";
 import TodoList from "../todo-list";
 import TodoAddItem from "../todo-add-item";
 
-import {createTodoItem, toggleProperty, search} from './app-logic-todo-list'
+import {createTodoItem, toggleProperty, 
+        searchTodoData, filterTodoData} from './app-logic-todo-list';
 
 import './app.css';
 
 const App = () => {
   
-  const [todoData, setData] = useState( () => [
-    createTodoItem('Drink Coffee'),
-    createTodoItem('Make Awesome App', true),
-    createTodoItem('Have a lunch')
+  const [todoData, setData] = useState( () => 
+    [
+      createTodoItem('Drink Coffee'),
+      createTodoItem('Make Awesome App', true),
+      createTodoItem('Have a lunch')
     ]
   );
 
@@ -38,19 +40,19 @@ const App = () => {
 
   const onToggleDone = id => setData((prev) => toggleProperty(id, prev, 'done'));
 
-  const filterBy = button => {
-    console.log(button.value)
+  const onFilterButton = activeButton => {
+    setTodoDataFilter(prev => { return {...prev, filter: activeButton.value.toLowerCase() }});
   }
 
-  const visibleItems = search(todoData,term);
+  const visibleItems = filterTodoData(searchTodoData(todoData,term), filter);
 
-  const onFilterInput = term => setTodoDataFilter((prev) => { return {...prev, term: term}})
+  const onFilterInput = term => setTodoDataFilter((prev) => { return {...prev, term}})
 
   return (
     <div className='app'>
         <AppHeader todo={todoData.length - amountDoneTodos} done={amountDoneTodos}/>
-        <SearchPanel filterBy={filterBy}
-                     onFilterInput={onFilterInput}/>
+        <SearchPanel onFilterInput={onFilterInput}
+                     onFilterButton={onFilterButton}/>
         <TodoList 
           todos={visibleItems}
           onDeleted={(id) => deleteItem(id)}

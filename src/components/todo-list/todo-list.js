@@ -14,7 +14,7 @@ const TodoList = ({todos, onDeleted,
           {... itemProps} 
           onDeleted={() => onDeleted(id)}
           onToggleImportant={() => onToggleImportant(id)}
-          onToggleDone={() => onToggleDone(id)}/> {/* Custom event onDeleted (кастомный эвент, созданный мной) */}
+          onToggleDone={() => onToggleDone(id)}/>
       </li>
     );
  
@@ -30,22 +30,3 @@ const TodoList = ({todos, onDeleted,
 export default TodoList;
 
 /* JSX attribute without value is "true", so attribute "important" equals to "important=true"*/
-
-
-   /*
-    ... 
-    return (
-      <li>
-        <TodoListItem 
-            label={item.label}
-            important={item.important}/>
-      </li>
-      Because names of attributes and the values in the object are same. We can use "spread operator"
-      it will look like 
-      ... 
-      return (
-        <li>
-          <TodoListItem {... item} />
-        </li>
-      )
-    */

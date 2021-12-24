@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ItemStatusFilter = ({filterBy}) => {
+const ItemStatusFilter = ({onFilterButton}) => {
 
     const [filterButtons, setFilterButtons] = useState([
         {value: 'All', isPrimary: true, id: 1},
@@ -17,7 +17,6 @@ const ItemStatusFilter = ({filterBy}) => {
         let style;
 
         if (isPrimary) {
-            filterBy(button);
             style = 'btn-primary';
         } else 
             style = 'btn-outline-secondary';
@@ -26,7 +25,10 @@ const ItemStatusFilter = ({filterBy}) => {
             <button type="button"
                     key={id}
                     className={`btn ${style}`}
-                    onClick={() => changePrimaryButton(id)}
+                    onClick={() => {
+                        changePrimaryButton(id);
+                        onFilterButton(button);
+                    }}
                     >
                     {value}
             </button>

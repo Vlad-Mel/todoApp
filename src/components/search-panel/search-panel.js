@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 import ItemStatusFilter from "../item-status-filter";
 import "./search-panel.css";
 
 
-const SearchPanel = ({filterBy, onFilterInput}) => {
-    const [term, setTerm] = useState({
-        term: ''
-    })
+const SearchPanel = ({onFilterButton, onFilterInput}) => {
 
     const onSearchChange = searchPanelEvent => {
         const term = searchPanelEvent.target.value
-        setTerm(() => { return {term}});
         onFilterInput(term)
     };
 
@@ -21,7 +17,7 @@ const SearchPanel = ({filterBy, onFilterInput}) => {
                    className="form-control"  
                    onChange={onSearchChange}/>
 
-            <ItemStatusFilter filterBy={filterBy}/>
+            <ItemStatusFilter onFilterButton={onFilterButton}/>
         </span>
     )
 }
